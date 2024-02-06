@@ -1,120 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:animate_do/animate_do.dart';
+import 'package:sali_hepeng/login_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _LoginState();
+  }
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 400,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        child: FadeInUp(
-                            duration: Duration(milliseconds: 1600),
-                            child: Container(
-                              margin: EdgeInsets.only(top: 50),
-                              child: Center(
-                                child: Image.asset('assets/images/logo.png')
-                              ),
-                            )),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(30.0),
-                  child: Column(
-                    children: <Widget>[
-                      FadeInUp(
-                          duration: Duration(milliseconds: 1800),
-                          child: Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    color: Color.fromRGBO(143, 148, 251, 1)),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color.fromRGBO(143, 148, 251, .2),
-                                      blurRadius: 20.0,
-                                      offset: Offset(0, 10))
-                                ]),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Color.fromRGBO(
-                                                  143, 148, 251, 1)))),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Email or Phone number",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[700])),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: TextField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        hintText: "Password",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[700])),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      FadeInUp(
-                          duration: Duration(milliseconds: 1900),
-                          child: Container(
-                            height: 50,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                gradient: LinearGradient(colors: [
-                                  Color.fromRGBO(89, 191, 238, 1),
-                                  Color.fromRGBO(13, 147, 213, 1),
-                                ])),
-                            child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          )),
-                      SizedBox(
-                        height: 70,
-                      ),
-                      FadeInUp(
-                          duration: Duration(milliseconds: 2000),
-                          child: Text(
-                            "Forgot Password?",
-                            style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1)),
-                          )),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      },
+      child: Text(
+        'Daftar / Masuk',
+        style: GoogleFonts.lato(
+          color: const Color.fromRGBO(67, 139, 232, 1),
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
   }
 }
