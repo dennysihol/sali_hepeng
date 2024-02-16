@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:sali_hepeng/home_page.dart';
+import 'package:sali_hepeng/perjanjian_page.dart';
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   bool _isButtonDisabled = true;
 
   @override
@@ -35,25 +39,25 @@ class _LoginFormState extends State<LoginForm> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          },
         ),
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 50,
-        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Text(
-                'Silahkan Masuk / Daftar Dengan Nomor Handphone',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+            const Text(
+              'Silahkan Masuk / Daftar Dengan Nomor Handphone',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(
@@ -100,7 +104,11 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: _isButtonDisabled
                   ? null
                   : () {
-                      _phoneNumberController.dispose();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Perjanjian()),
+                      );
                     },
               child: const Text(
                 'Selanjutnya',
