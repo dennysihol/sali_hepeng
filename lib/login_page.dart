@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:sali_hepeng/home_page.dart';
 import 'package:sali_hepeng/perjanjian_page.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  LoginFormState createState() => LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class LoginFormState extends State<LoginForm> {
   final TextEditingController _phoneNumberController = TextEditingController();
   bool _isButtonDisabled = true;
 
@@ -37,15 +36,6 @@ class _LoginFormState extends State<LoginForm> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          },
-        ),
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
       ),
