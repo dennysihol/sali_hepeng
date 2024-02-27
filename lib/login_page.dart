@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:sali_hepeng/perjanjian_page.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  LoginFormState createState() => LoginFormState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class LoginFormState extends State<LoginForm> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _phoneNumberController = TextEditingController();
   bool _isButtonDisabled = true;
 
@@ -72,7 +72,7 @@ class LoginFormState extends State<LoginForm> {
                   print(text);
                 },
                 onCountryChanged: (country) {
-                  print('Country changed to: ' + country.name);
+                  // print('Country changed to: ' + country.name);
                 },
               ),
             ),

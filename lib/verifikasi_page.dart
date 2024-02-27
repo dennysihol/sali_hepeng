@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sali_hepeng/otp_page.dart';
 
 class VerifikasiPage extends StatelessWidget {
   const VerifikasiPage({super.key});
@@ -8,6 +10,10 @@ class VerifikasiPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: const Text("Daftar"),
         centerTitle: true,
       ),
@@ -18,20 +24,44 @@ class VerifikasiPage extends StatelessWidget {
             const SizedBox(
               height: 100,
             ),
-            Container(
+            Center(
               child: Image.asset('assets/images/verifikasi.png'),
             ),
             const SizedBox(
-              height: 40,
+              height: 70,
             ),
-            Text(
-              'Pilih Metode Verifikasi',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'Pilih Metode Verifikasi',
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            ElevatedButton(
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Silahkan pilih metode verifikasi yang'
+              'akan dikirimkan melalui nomor',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+              textAlign: TextAlign.start,
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                '+62 812 1111 8888',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.start,
+              ),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+            ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: const Color.fromARGB(255, 0, 135, 255),
@@ -43,8 +73,14 @@ class VerifikasiPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   minimumSize: const Size(380, 60)),
-              onPressed: () {},
-              child: const Text(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OtpPage()),
+                );
+              },
+              icon: const Icon(Icons.sms_outlined),
+              label: const Text(
                 'Via SMS',
                 style: TextStyle(
                   fontSize: 17,
@@ -54,7 +90,7 @@ class VerifikasiPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: const Color.fromARGB(255, 0, 135, 255),
@@ -66,14 +102,20 @@ class VerifikasiPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   minimumSize: const Size(380, 60)),
-              onPressed: () {},
-              child: const Text(
-                'Via WhatsApp',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OtpPage()),
+                );
+              },
+              icon: const FaIcon(FontAwesomeIcons.whatsapp),
+              label: const Text(
+                'Via Whatsapp',
                 style: TextStyle(
                   fontSize: 17,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

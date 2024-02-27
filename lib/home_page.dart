@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
         duration: 3000,
         splash: 'assets/images/background.png',
         splashIconSize: double.infinity,
-        nextScreen: LoginForm(),
+        nextScreen: LoginPage(),
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.leftToRight,
         backgroundColor: const Color.fromARGB(255, 0, 135, 255),
