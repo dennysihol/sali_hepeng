@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sali_hepeng/login_page.dart';
 import 'package:sali_hepeng/verifikasi_page.dart';
 
 class Perjanjian extends StatefulWidget {
   const Perjanjian({Key? key}) : super(key: key);
 
   @override
-  _PerjanjianState createState() => _PerjanjianState();
+   _PerjanjianState createState() => _PerjanjianState();
 }
 
 class _PerjanjianState extends State<Perjanjian> {
@@ -19,12 +18,7 @@ class _PerjanjianState extends State<Perjanjian> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginForm()),
-            );
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
@@ -215,7 +209,7 @@ class _PerjanjianState extends State<Perjanjian> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => VerifikasiPage()),
+                                  builder: (context) => const VerifikasiPage()),
                             );
                           },
                           child: const Text(
@@ -235,7 +229,7 @@ class _PerjanjianState extends State<Perjanjian> {
         ],
       ),
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 70.0), // Adjust the padding as needed
+        padding: const EdgeInsets.only(bottom: 70.0), // Adjust the padding as needed
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Opacity(
@@ -243,7 +237,7 @@ class _PerjanjianState extends State<Perjanjian> {
                 0.7, // Adjust the opacity level as needed (value ranges from 0.0 to 1.0)
             child: FloatingActionButton(
               onPressed: _scrollToBottom,
-              child: Icon(Icons.arrow_downward),
+              child: const Icon(Icons.arrow_downward),
             ),
           ),
         ),
@@ -254,7 +248,7 @@ class _PerjanjianState extends State<Perjanjian> {
   void _scrollToBottom() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }
