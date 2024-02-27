@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sali_hepeng/pinjamduit_page.dart';
 
 class PasswordSetupPage extends StatefulWidget {
   @override
@@ -20,9 +22,24 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
     _passwordController.addListener(_checkPassword);
   }
 
-    void _checkPassword() {
+  void _checkPassword() {
     setState(() {
       _isButtonDisabled = _passwordController.text.isEmpty;
+    });
+  }
+
+  void _showSweetAlert(BuildContext context) {
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Success",
+      desc: "Kata sandi berhasil dibuat",
+      buttons: [],
+    ).show();
+
+    // Auto-close after 3 seconds
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
     });
   }
 
@@ -128,9 +145,15 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
                     ),
                     minimumSize: const Size(380, 60)),
                 onPressed: _isButtonDisabled
-                  ? null
-                  : () {
-                    },
+                    ? null
+                    : () {
+                        _showSweetAlert(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PinjamDuitHomePage()),
+                        );
+                      },
                 child: const Text(
                   'Selanjutnya',
                   style: TextStyle(
