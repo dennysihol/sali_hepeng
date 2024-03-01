@@ -70,7 +70,14 @@ flutter:
   assets:
      - assets/images/background.png
      - assets/images/verifikasi.png
-
+     - assets/images/pd_logo.png
+     - assets/images/bg_card.png
+     - assets/images/icon/ic_home.png
+     - assets/images/icon/ic_bayar.png
+     - assets/images/icon/ic_pd.png
+     - assets/images/icon/ic_riwayat.png
+     - assets/images/icon/ic_profil.png
+     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

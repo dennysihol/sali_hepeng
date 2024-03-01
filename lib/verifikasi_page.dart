@@ -53,7 +53,7 @@ class VerifikasiPage extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               child: const Text(
-                '+62 812 1111 8888',
+                '+62 812 **** **79',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),

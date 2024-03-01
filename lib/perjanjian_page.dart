@@ -10,6 +10,45 @@ class Perjanjian extends StatefulWidget {
 
 class _PerjanjianState extends State<Perjanjian> {
   final ScrollController _scrollController = ScrollController();
+  bool _isFabVisible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent &&
+        _isFabVisible) {
+      setState(() {
+        _isFabVisible = false;
+      });
+    } else if (_scrollController.position.pixels <
+            _scrollController.position.maxScrollExtent &&
+        !_isFabVisible) {
+      setState(() {
+        _isFabVisible = true;
+      });
+    }
+  }
+
+  void _scrollToBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +225,7 @@ class _PerjanjianState extends State<Perjanjian> {
                         ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.only(bottom: 20, top: 10.0),
                     color: Colors.grey[200],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -203,7 +242,7 @@ class _PerjanjianState extends State<Perjanjian> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
-                            minimumSize: const Size(350, 40),
+                            minimumSize: const Size(350, 55),
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -228,28 +267,22 @@ class _PerjanjianState extends State<Perjanjian> {
           ),
         ],
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 70.0), // Adjust the padding as needed
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Opacity(
-            opacity:
-                0.7, // Adjust the opacity level as needed (value ranges from 0.0 to 1.0)
-            child: FloatingActionButton(
-              onPressed: _scrollToBottom,
-              child: const Icon(Icons.arrow_downward),
-            ),
-          ),
-        ),
-      ),
+      floatingActionButton: _isFabVisible
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 70.0), 
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Opacity( 
+                  opacity: 0.7, 
+                  child: FloatingActionButton(
+                    onPressed: _scrollToBottom,
+                    child: const Icon(Icons.arrow_downward),
+                  ),
+                ),
+              ),
+            )
+          : null,
     );
   }
 
-  void _scrollToBottom() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
 }

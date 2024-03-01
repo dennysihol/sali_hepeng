@@ -98,7 +98,7 @@ class _OtpPageState extends State<OtpPage> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: const Text(
-                    '+62 812 1111 2222',
+                    '+62 812 **** **79',
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -110,15 +110,16 @@ class _OtpPageState extends State<OtpPage> {
                   // Specify direction if desired
                   textDirection: TextDirection.ltr,
                   child: Pinput(
+                    length: 6,
                     controller: pinController,
                     focusNode: focusNode,
                     androidSmsAutofillMethod:
                         AndroidSmsAutofillMethod.smsUserConsentApi,
                     listenForMultipleSmsOnAndroid: true,
                     defaultPinTheme: defaultPinTheme,
-                    separatorBuilder: (index) => const SizedBox(width: 8),
+                    separatorBuilder: (index) => const SizedBox(width: 9),
                     validator: (value) {
-                      return value == '2222' ? null : 'Pin is incorrect';
+                      return value == '222222' ? null : 'Pin is incorrect';
                     },
                     // onClipboardFound: (value) {
                     //   debugPrint('onClipboardFound: $value');
@@ -126,7 +127,7 @@ class _OtpPageState extends State<OtpPage> {
                     // },
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     onCompleted: (pin) {
-                      if (pin == '2222') {
+                      if (pin == '222222') {
                         return goToPasswordPage();
                       }
                     },
@@ -153,7 +154,7 @@ class _OtpPageState extends State<OtpPage> {
                     submittedPinTheme: defaultPinTheme.copyWith(
                       decoration: defaultPinTheme.decoration!.copyWith(
                         color: fillColor,
-                        borderRadius: BorderRadius.circular(19),
+                        borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: focusedBorderColor),
                       ),
                     ),
