@@ -96,12 +96,9 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        'Total Limit Pinjaman',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
+                      Text(
+                        'Total limit pinjaman',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 20),
                       ),
                       // IconButton(
                       //   icon: const Icon(Icons.visibility_off),
@@ -123,16 +120,39 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                         width: 40,
                       ),
                       Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(200, 0, 96, 181),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        child: const Text(
-                          'Rp. 1.000.000.000',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
+                          padding: EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
+                              color: Color.fromARGB(200, 0, 96, 181),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: Row(
+                            children: [
+                              Baseline(
+                                baseline: 5,
+                                baselineType: TextBaseline.ideographic,
+                                child: Text(
+                                  'Rp ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Colors.white, fontSize: 14),
+                                ),
+                              ),
+                              Baseline(
+                                baseline: 20,
+                                baselineType: TextBaseline.alphabetic,
+                                child: Text(
+                                  '600.000',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: Colors.white, fontSize: 20),
+                                ),
+                              )
+                            ],
+                          )),
                     ],
                   ),
                   const SizedBox(
@@ -155,12 +175,12 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
-                        'Sisa Limit Pinjaman',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
+                      Text(
+                        'Sisa limit pinjaman',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Colors.white, fontSize: 17),
                       ),
                       // IconButton(
                       //   icon: const Icon(Icons.visibility_off),
@@ -171,13 +191,14 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       //     print('Search icon tapped!');
                       //   },
                       // ),
-                      const Expanded(
+                      Expanded(
                         child: Text(
                           'Rp. 600.000',
                           textAlign: TextAlign.end,
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: Colors.white, fontSize: 17),
                         ),
                       )
                     ],
@@ -202,21 +223,21 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
+                      Text(
                         'Voucher',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Colors.white, fontSize: 17),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: Text(
                           '2',
                           textAlign: TextAlign.end,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: Colors.white, fontSize: 17),
                         ),
                       ),
                     ],

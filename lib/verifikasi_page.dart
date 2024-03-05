@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sali_hepeng/otp_page.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class VerifikasiPage extends StatelessWidget {
   const VerifikasiPage({super.key});
@@ -16,6 +17,7 @@ class VerifikasiPage extends StatelessWidget {
         ),
         title: const Text("Daftar"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -32,29 +34,29 @@ class VerifikasiPage extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              child: const Text(
+              child: Text(
                 'Pilih Metode Verifikasi',
                 textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Silahkan pilih metode verifikasi yang'
+            Text(
+              'Silahkan pilih metode verifikasi yang '
               'akan dikirimkan melalui nomor',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
+              style: Theme.of(context).textTheme.bodySmall,
               textAlign: TextAlign.start,
             ),
             Container(
               alignment: Alignment.centerLeft,
-              child: const Text(
+              child: Text(
                 '+62 812 **** **79',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
               ),
             ),

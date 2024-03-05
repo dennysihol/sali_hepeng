@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sali_hepeng/verifikasi_page.dart';
+import 'package:sali_hepeng/otp_page.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class Perjanjian extends StatefulWidget {
   const Perjanjian({Key? key}) : super(key: key);
@@ -61,6 +62,7 @@ class _PerjanjianState extends State<Perjanjian> {
         ),
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle
       ),
       body: Column(
         children: [
@@ -70,17 +72,17 @@ class _PerjanjianState extends State<Perjanjian> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
                       'Perjanjian Pengguna',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
+                         style :Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                         'Fusce volutpat feugiat nunc vel aliquet. '
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
@@ -147,17 +149,17 @@ class _PerjanjianState extends State<Perjanjian> {
                         // Add more text content as needed
                         ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
                       'Kebijakan Privasi',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(20.0),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
                     child: Text(
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
                         'Fusce volutpat feugiat nunc vel aliquet. '
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
@@ -248,14 +250,12 @@ class _PerjanjianState extends State<Perjanjian> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const VerifikasiPage()),
+                                  builder: (context) => const OtpPage()),
                             );
                           },
-                          child: const Text(
+                          child: Text(
                             'Setuju',
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
                           ),
                         ),
                       ],

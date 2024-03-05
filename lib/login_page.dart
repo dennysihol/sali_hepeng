@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:sali_hepeng/masuk_page.dart';
 import 'package:sali_hepeng/perjanjian_page.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,17 +40,15 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text(
+            Text(
               'Silahkan Masuk / Daftar Dengan Nomor Handphone',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
@@ -94,17 +94,22 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _isButtonDisabled
                   ? null
                   : () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Perjanjian()),
-                      );
+                    print(_phoneNumberController);
+                      if (_phoneNumberController.text == '81210704479') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Perjanjian()),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginAccountPage()),
+                        );
+                      }
                     },
               child: const Text(
                 'Selanjutnya',
-                style: TextStyle(
-                  fontSize: 17,
-                ),
+                style: TextStyle(fontSize: 16),
               ),
             )
           ],

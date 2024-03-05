@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sali_hepeng/password_page.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 /// This is the basic usage of Pinput
 /// For more examples check out the demo directory
@@ -28,6 +29,21 @@ class _OtpPageState extends State<OtpPage> {
       context,
       MaterialPageRoute(builder: (context) => PasswordSetupPage()),
     );
+  }
+
+    void _showSweetAlert(BuildContext context) {
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Success",
+      desc: "Kode Verifikasi Berhasil Dimasukan",
+      buttons: [],
+    ).show();
+
+    // Auto-close after 3 seconds
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
+    });
   }
 
   @override
@@ -128,7 +144,12 @@ class _OtpPageState extends State<OtpPage> {
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     onCompleted: (pin) {
                       if (pin == '222222') {
-                        return goToPasswordPage();
+                        _showSweetAlert(context);
+                        goToPasswordPage();
+                      }
+                      else {
+                        pinController.clear();
+                        focusNode.requestFocus();
                       }
                     },
                     onChanged: (value) {
