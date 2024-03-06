@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sali_hepeng/pinjamduit_page.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class LoginAccountPage extends StatefulWidget {
+  const LoginAccountPage({super.key});
+
   @override
   _LoginAccountPageState createState() => _LoginAccountPageState();
 }
@@ -23,8 +26,9 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
   }
 
   void _checkPassword() {
+    final bool isEmpty = _passwordController.text.isEmpty;
     setState(() {
-      _isButtonDisabled = _passwordController.text.isEmpty;
+      _isButtonDisabled = isEmpty;
     });
   }
 
@@ -53,18 +57,20 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
         ),
         title: const Text("Masuk"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Masukkan Kata Sandi',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+              Text('Masukkan Kata Sandi',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 20, fontWeight: FontWeight.bold)),
               const SizedBox(
                 height: 30,
               ),
@@ -74,8 +80,8 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                   suffixIcon: IconButton(
                     padding: const EdgeInsetsDirectional.only(end: 12.0),
                     icon: _isObscured
-                        ? const Icon(Icons.visibility)
-                        : const Icon(Icons.visibility_off),
+                        ? const Icon(Icons.visibility_off_outlined)
+                        : const Icon(Icons.visibility_outlined),
                     onPressed: () {
                       setState(() {
                         _isObscured = !_isObscured;
@@ -98,6 +104,16 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                   print(_password);
                 },
               ),
+              Container(
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Lupa password?',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ),
               const SizedBox(height: 20.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -114,12 +130,16 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                 onPressed: _isButtonDisabled
                     ? null
                     : () {
-                        _showSweetAlert(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PinjamDuitHomePage()),
-                        );
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!
+                              .save(); // Save the password value
+                          _showSweetAlert(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PinjamDuitHomePage()),
+                          );
+                        }
                       },
                 child: const Text(
                   'Masuk',
@@ -128,7 +148,6 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

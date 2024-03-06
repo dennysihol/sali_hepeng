@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class PinjamDuitHomePage extends StatefulWidget {
-  PinjamDuitHomePage({super.key});
+  const PinjamDuitHomePage({super.key});
 
   @override
-  _PinjamDuitHomePageState createState() => _PinjamDuitHomePageState();
+  PinjamDuitHomePageState createState() => PinjamDuitHomePageState();
 }
 
-class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
+class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
   int _currentIndex = 0;
   final bool _hasNotifications = false;
 
@@ -39,7 +39,8 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
             // Use a Stack for badge positioning
             children: [
               IconButton(
-                icon: Icon(Icons.notifications_outlined), // Notification icon
+                icon: const Icon(
+                    Icons.notifications_outlined), // Notification icon
                 onPressed: () {
                   // Handle navigating to notifications screen
                 },
@@ -135,7 +136,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(200, 0, 96, 181),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
+                                BorderRadius.all(Radius.circular(8))),
                         child: Row(
                           children: [
                             Baseline(
@@ -165,6 +166,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                                       color: Colors.white,
                                       fontSize: 16,
                                       fontFamily: 'DMSans',
+                                      fontWeight: FontWeight.bold,
                                     ),
                               ),
                             )
@@ -198,7 +200,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                         'Sisa limit pinjaman',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontFamily: 'DMSans',
                             ),
                       ),
@@ -240,7 +242,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                                     .bodyMedium!
                                     .copyWith(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: 'DMSans',
                                     ),
                               ),
@@ -275,7 +277,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                         'Voucher',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontFamily: 'DMSans',
                             ),
                       ),
@@ -313,7 +315,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                 Row(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(30),
+                      padding: const EdgeInsets.all(30),
                       child: Image.asset(
                         'assets/images/icon/red_info.png',
                         scale: 0.8,
@@ -347,7 +349,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                   ],
                 ),
                 const Divider(
-                  color: const Color.fromARGB(255, 230, 243, 255),
+                  color: Color.fromARGB(255, 230, 243, 255),
                   height: 1,
                 ),
                 Expanded(
@@ -400,6 +402,9 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'DMSans'),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Expanded(
                   flex: 0,
                   child: CarouselSlider(
@@ -410,8 +415,7 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                     ),
                     items: imageList.map((imageAsset) {
                       return Container(
-                        padding: EdgeInsets.only(top: 10),
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: Image.asset(
@@ -423,6 +427,12 @@ class _PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       );
                     }).toList(),
                   ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Center(
+                  child: Image.asset('assets/images/ojk.png'),
                 )
               ],
             ),

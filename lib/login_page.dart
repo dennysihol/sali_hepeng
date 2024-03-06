@@ -48,14 +48,17 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Text(
               'Silahkan Masuk / Daftar Dengan Nomor Handphone',
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(
               height: 20,
             ),
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+                horizontal: 15,
               ),
               child: IntlPhoneField(
                 controller: _phoneNumberController,
@@ -65,6 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
+                  counterText: '',
+                  counterStyle: TextStyle(fontSize: 0),
                 ),
                 languageCode: "id",
                 onChanged: (phone) {
@@ -76,8 +81,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             ),
+            Container(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Butuh Bantuan?',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: const Color.fromARGB(255, 124, 123, 123),
+                      ),
+                ),
+              ),
+            ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -94,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _isButtonDisabled
                   ? null
                   : () {
-                    print(_phoneNumberController);
+                      print(_phoneNumberController);
                       if (_phoneNumberController.text == '81210704479') {
                         Navigator.push(
                           context,
@@ -103,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                       } else {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginAccountPage()),
+                          MaterialPageRoute(
+                              builder: (context) => LoginAccountPage()),
                         );
                       }
                     },
