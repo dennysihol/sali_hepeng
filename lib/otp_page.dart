@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:sali_hepeng/password_page.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sali_hepeng/theme/theme.dart';
+import 'package:sali_hepeng/verifikasi_page.dart';
 
 /// This is the basic usage of Pinput
 /// For more examples check out the demo directory
@@ -31,7 +33,7 @@ class _OtpPageState extends State<OtpPage> {
     );
   }
 
-    void _showSweetAlert(BuildContext context) {
+  void _showSweetAlert(BuildContext context) {
     Alert(
       context: context,
       type: AlertType.success,
@@ -74,6 +76,7 @@ class _OtpPageState extends State<OtpPage> {
         ),
         title: const Text("Daftar"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: FractionallySizedBox(
         widthFactor: 1,
@@ -88,10 +91,13 @@ class _OtpPageState extends State<OtpPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     'Verifikasi Kode OTP',
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 const SizedBox(
@@ -99,13 +105,13 @@ class _OtpPageState extends State<OtpPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     'Kode Verifikasi WhatsApp telah di kirim ke',
                     textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontSize: 16),
                   ),
                 ),
                 const SizedBox(
@@ -113,10 +119,13 @@ class _OtpPageState extends State<OtpPage> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     '+62 812 **** **79',
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
                 const SizedBox(
@@ -146,8 +155,7 @@ class _OtpPageState extends State<OtpPage> {
                       if (pin == '222222') {
                         _showSweetAlert(context);
                         goToPasswordPage();
-                      }
-                      else {
+                      } else {
                         pinController.clear();
                         focusNode.requestFocus();
                       }
@@ -194,12 +202,12 @@ class _OtpPageState extends State<OtpPage> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Tidak menerima kode OTP?',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(fontSize: 14),
                       ),
                     ),
                     // TextButton(
@@ -213,10 +221,17 @@ class _OtpPageState extends State<OtpPage> {
                     //   ),
                     // ),
                     TextButton(
-                      onPressed: () {},
-                      child: const Text(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VerifikasiPage()),
+                        );
+                      },
+                      child: Text(
                         'Kirim ulang kode OTP',
-                        style: TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -228,13 +243,13 @@ class _OtpPageState extends State<OtpPage> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      child: const Text(
+                      child: Text(
                         'Kode OTP akan dikirimkan kembali secara otomatis\n'
                         'jika waktu berakhir 01:59',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(fontSize: 14),
                       ),
                     ),
                     // TextButton(

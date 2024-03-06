@@ -12,7 +12,7 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _password = "";
-  String _confirmPassword = "";
+  // String _confirmPassword = "";
   var _isObscured;
   bool _isButtonDisabled = true;
 
@@ -95,6 +95,7 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                 },
                 onSaved: (val) {
                   _password = val!;
+                  print(_password);
                 },
               ),
               const SizedBox(height: 20.0),
