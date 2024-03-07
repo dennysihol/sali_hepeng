@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sali_hepeng/pinjamduit_page.dart';
-import 'package:sali_hepeng/theme/theme.dart';
 
 class LoginAccountPage extends StatefulWidget {
   const LoginAccountPage({super.key});
@@ -11,24 +11,28 @@ class LoginAccountPage extends StatefulWidget {
 }
 
 class _LoginAccountPageState extends State<LoginAccountPage> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _passwordController = TextEditingController();
-
-  String _password = "";
-  // String _confirmPassword = "";
+  final _textController = TextEditingController();
+  bool _isButtonEnabled = false;
   var _isObscured;
-  bool _isButtonDisabled = true;
 
+  @override
   void initState() {
     super.initState();
+    // Add a listener to update button state based on text changes
+    _textController.addListener(_updateButtonState);
     _isObscured = true;
-    _passwordController.addListener(_checkPassword);
   }
 
-  void _checkPassword() {
-    final bool isEmpty = _passwordController.text.isEmpty;
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed
+    _textController.dispose();
+    super.dispose();
+  }
+
+  void _updateButtonState() {
     setState(() {
-      _isButtonDisabled = isEmpty;
+      _isButtonEnabled = _textController.text.isNotEmpty;
     });
   }
 
@@ -37,12 +41,12 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
       context: context,
       type: AlertType.success,
       title: "Success",
-      desc: "Kata sandi berhasil dibuat",
+      desc: "Berhasil Login",
       buttons: [],
     ).show();
 
     // Auto-close after 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
     });
   }
@@ -59,64 +63,69 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
         centerTitle: true,
         titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Masukkan Kata Sandi',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontSize: 20, fontWeight: FontWeight.bold)),
-              const SizedBox(
-                height: 30,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Masukkan Kata Sandi',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 20,
+                      fontFamily: 'DMSans',
+                      fontWeight: FontWeight.w500,
+                    ),
               ),
-              TextFormField(
-                obscureText: _isObscured, // Hide the password characters
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    padding: const EdgeInsetsDirectional.only(end: 12.0),
-                    icon: _isObscured
-                        ? const Icon(Icons.visibility_off_outlined)
-                        : const Icon(Icons.visibility_outlined),
-                    onPressed: () {
-                      setState(() {
-                        _isObscured = !_isObscured;
-                      });
-                    },
-                  ),
-                  labelText: 'Masukkan Kata Sandi',
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            TextFormField(
+              controller: _textController,
+              obscureText: _isObscured, // Hide the password characters
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  padding: const EdgeInsetsDirectional.only(end: 12.0),
+                  icon: _isObscured
+                      ? const Icon(Icons.visibility_off_outlined)
+                      : const Icon(Icons.visibility_outlined),
+                  onPressed: () {
+                    setState(() {
+                      _isObscured = !_isObscured;
+                    });
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Masukkan Kata Sandi';
-                  }
-                  return null;
-                },
-                onSaved: (val) {
-                  _password = val!;
-                  print(_password);
-                },
-              ),
-              Container(
-                alignment: Alignment.topRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Lupa password?',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                labelText: 'Masukkan Kata Sandi',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
               ),
-              const SizedBox(height: 20.0),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter a password';
+                }
+                return null;
+              },
+            ),
+            Container(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Lupa Password?',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: const Color.fromARGB(255, 124, 123, 123),
+                      ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 0, 135, 255),
                     disabledBackgroundColor:
@@ -127,29 +136,22 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     minimumSize: const Size(380, 60)),
-                onPressed: _isButtonDisabled
-                    ? null
-                    : () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!
-                              .save(); // Save the password value
-                          _showSweetAlert(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PinjamDuitHomePage()),
-                          );
-                        }
-                      },
-                child: const Text(
-                  'Masuk',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-            ],
-          ),
+              onPressed: _isButtonEnabled
+                  ? () {
+                       _showSweetAlert(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PinjamDuitHomePage()),
+                        );
+                    }
+                  : null,
+              child: const Text('Masuk', style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'DMSans'
+              ),),
+            ),
+          ],
         ),
       ),
     );
