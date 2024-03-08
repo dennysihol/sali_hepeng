@@ -5,6 +5,9 @@ import 'package:sali_hepeng/login_page.dart';
 import 'package:sali_hepeng/theme/theme.dart';
 
 class HomePage extends StatelessWidget {
+
+  const HomePage ({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

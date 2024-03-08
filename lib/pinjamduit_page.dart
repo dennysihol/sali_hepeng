@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sali_hepeng/syarat_page.dart';
 
 class PinjamDuitHomePage extends StatefulWidget {
   const PinjamDuitHomePage({super.key});
 
   @override
-  PinjamDuitHomePageState createState() => PinjamDuitHomePageState();
+  State<PinjamDuitHomePage> createState() => PinjamDuitHomePageState();
 }
 
 class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
@@ -135,8 +136,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                         padding: const EdgeInsets.all(5),
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(200, 0, 96, 181),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8))),
+                            borderRadius: BorderRadius.all(Radius.circular(8))),
                         child: Row(
                           children: [
                             Baseline(
@@ -359,7 +359,13 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Syarat()),
+                            );
+                          },
                           child: Text(
                             'Lengkapi Sekarang',
                             style: Theme.of(context)
@@ -370,7 +376,13 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Syarat()),
+                            );
+                          },
                           icon: const Icon(
                             Icons.arrow_forward_ios,
                           ),
@@ -412,6 +424,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       height: 150,
                       autoPlay: true,
                       viewportFraction: 1,
+                      autoPlayInterval: const Duration(seconds: 5),
                     ),
                     items: imageList.map((imageAsset) {
                       return Container(
@@ -447,6 +460,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
           selectedItemColor: const Color.fromARGB(255, 21, 113, 194),
           unselectedItemColor: const Color.fromARGB(255, 138, 200, 255),
           currentIndex: _currentIndex,
+          unselectedLabelStyle: const TextStyle(fontFamily: 'DMSans'),
           onTap: onTabTapped,
           items: [
             const BottomNavigationBarItem(

@@ -7,6 +7,9 @@ import 'package:sali_hepeng/theme/theme.dart';
 void main() => runApp(PinjamDuitApp());
 
 class PinjamDuitApp extends StatelessWidget {
+
+  const PinjamDuitApp ({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

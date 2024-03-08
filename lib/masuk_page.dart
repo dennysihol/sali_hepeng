@@ -7,7 +7,7 @@ class LoginAccountPage extends StatefulWidget {
   const LoginAccountPage({super.key});
 
   @override
-  _LoginAccountPageState createState() => _LoginAccountPageState();
+  State<LoginAccountPage> createState() => _LoginAccountPageState();
 }
 
 class _LoginAccountPageState extends State<LoginAccountPage> {

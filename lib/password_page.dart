@@ -4,8 +4,10 @@ import 'package:sali_hepeng/pinjamduit_page.dart';
 import 'package:sali_hepeng/theme/theme.dart';
 
 class PasswordSetupPage extends StatefulWidget {
+
+  const PasswordSetupPage({super.key});
   @override
-  _PasswordSetupPageState createState() => _PasswordSetupPageState();
+  State<PasswordSetupPage> createState() => _PasswordSetupPageState();
 }
 
 class _PasswordSetupPageState extends State<PasswordSetupPage> {

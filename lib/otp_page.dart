@@ -8,7 +8,7 @@ import 'package:sali_hepeng/verifikasi_page.dart';
 /// This is the basic usage of Pinput
 /// For more examples check out the demo directory
 class OtpPage extends StatefulWidget {
-  const OtpPage({Key? key}) : super(key: key);
+  const OtpPage({super.key});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
