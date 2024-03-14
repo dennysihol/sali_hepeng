@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:sali_hepeng/pinjamduit_page.dart';
+import 'package:sali_hepeng/navigation.dart';
 import 'package:sali_hepeng/theme/theme.dart';
 
 class PasswordSetupPage extends StatefulWidget {
@@ -158,7 +158,7 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PinjamDuitHomePage()),
+                              builder: (context) => NavigationPage()),
                         );
                       },
                 child: const Text(

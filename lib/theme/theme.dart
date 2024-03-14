@@ -22,6 +22,14 @@ final myTheme = ThemeData(
         borderRadius: BorderRadius.circular(10.0),
       ),
       height: 60.0,
+    ),
+    sliderTheme: SliderThemeData(
+      activeTrackColor: const Color.fromARGB(255, 0, 96, 181),
+      inactiveTrackColor: const Color.fromARGB(255, 0, 123, 232),
+      trackShape: RectangularSliderTrackShape(),
+      trackHeight: 6.0,
+      thumbColor: Color.fromARGB(255, 77, 198, 61),
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
+      overlayColor: const Color.fromARGB(255, 231, 226, 226),
+      overlayShape: RoundSliderOverlayShape(overlayRadius: 15.0),
     ));
-
-

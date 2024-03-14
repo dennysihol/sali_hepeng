@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sali_hepeng/theme/theme.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:sali_hepeng/pinjamduit_page.dart';
+import 'package:sali_hepeng/navigation.dart';
 
 class LoginAccountPage extends StatefulWidget {
   const LoginAccountPage({super.key});
@@ -142,7 +142,7 @@ class _LoginAccountPageState extends State<LoginAccountPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PinjamDuitHomePage()),
+                              builder: (context) => const NavigationPage()),
                         );
                     }
                   : null,

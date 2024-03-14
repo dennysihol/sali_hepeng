@@ -1,68 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sali_hepeng/syarat_page.dart';
 
-class PinjamDuitHomePage extends StatefulWidget {
-  const PinjamDuitHomePage({super.key});
+class BayarPage extends StatefulWidget {
+  const BayarPage({super.key});
 
   @override
-  State<PinjamDuitHomePage> createState() => PinjamDuitHomePageState();
+  State<BayarPage> createState() => BayarPageState();
 }
 
-class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
-  final bool _hasNotifications = false;
-
+class BayarPageState extends State<BayarPage> {
   final List<String> imageList = [
     'assets/images/ads/ads_1.png',
     'assets/images/ads/ads_2.png',
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 230, 243, 255),
       appBar: AppBar(
-        title: Image.asset(
-          'assets/images/pd_logo.png',
-          fit: BoxFit.cover,
+        centerTitle: true,
+        title: Text(
+          'PinjamDuit',
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontFamily: 'DMSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         backgroundColor: const Color.fromARGB(255, 230, 243, 255),
         automaticallyImplyLeading: false,
-        actions: [
-          Stack(
-            // Use a Stack for badge positioning
-            children: [
-              IconButton(
-                icon: const Icon(
-                    Icons.notifications_outlined), // Notification icon
-                onPressed: () {
-                  // Handle navigating to notifications screen
-                },
-              ),
-              if (_hasNotifications)
-                Positioned(
-                  // Notification badge
-                  top: 8, // Adjust positioning as needed
-                  right: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 14,
-                      minHeight: 14,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ],
       ),
       body: Column(
         children: [
+          const Text('HALAMAN BAYAR'),
           const SizedBox(
             height: 20,
           ),
@@ -296,154 +266,6 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            height: 150,
-            width: double.infinity,
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(30),
-                      child: Image.asset(
-                        'assets/images/icon/red_info.png',
-                        scale: 0.8,
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Lengkapi Akun!',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    color: Colors.red,
-                                    fontSize: 16,
-                                    fontFamily: 'DMSans',
-                                    fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Segera lengkapi akunmu agar dapat melakukan pinjaman!',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontSize: 14, fontFamily: 'DMSans'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const Divider(
-                  color: Color.fromARGB(255, 230, 243, 255),
-                  height: 1,
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Syarat()),
-                            );
-                          },
-                          child: Text(
-                            'Lengkapi Sekarang',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Syarat()),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          const Spacer(),
-          Container(
-            height: 300,
-            padding: const EdgeInsets.all(20),
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              color: Colors.white,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Penawaran terbatas untuk kamu !',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'DMSans'),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Expanded(
-                  flex: 0,
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: 150,
-                      autoPlay: true,
-                      viewportFraction: 1,
-                      autoPlayInterval: const Duration(seconds: 5),
-                    ),
-                    items: imageList.map((imageAsset) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.asset(
-                            imageAsset,
-                            fit: BoxFit.cover,
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Center(
-                  child: Image.asset('assets/images/ojk.png'),
-                )
-              ],
-            ),
-          ), // Other elements of your Column, if needed
         ],
       ),
     );
