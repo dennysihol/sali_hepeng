@@ -7,14 +7,14 @@ import 'package:sali_hepeng/verifikasi_page.dart';
 
 /// This is the basic usage of Pinput
 /// For more examples check out the demo directory
-class OtpPage extends StatefulWidget {
-  const OtpPage({super.key});
+class PinEntryScreen extends StatefulWidget {
+  const PinEntryScreen({super.key});
 
   @override
-  State<OtpPage> createState() => _OtpPageState();
+  State<PinEntryScreen> createState() => _PinEntryScreenState();
 }
 
-class _OtpPageState extends State<OtpPage> {
+class _PinEntryScreenState extends State<PinEntryScreen> {
   final pinController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
@@ -69,15 +69,6 @@ class _OtpPageState extends State<OtpPage> {
 
     /// Optionally you can use form to validate the Pinput
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text("Daftar"),
-        centerTitle: true,
-        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
-      ),
       body: FractionallySizedBox(
         widthFactor: 1,
         child: Form(
@@ -87,13 +78,13 @@ class _OtpPageState extends State<OtpPage> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 100,
                 ),
                 Container(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.bottomCenter,
                   child: Text(
-                    'Verifikasi Kode OTP',
-                    textAlign: TextAlign.start,
+                    'Masukkan PIN',
+                    textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall!
@@ -101,35 +92,7 @@ class _OtpPageState extends State<OtpPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Kode Verifikasi WhatsApp telah di kirim ke',
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontSize: 16),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '+62 812 **** **79',
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
+                  height: 30,
                 ),
                 Directionality(
                   // Specify direction if desired

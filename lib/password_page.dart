@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sali_hepeng/navigation.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class PasswordSetupPage extends StatefulWidget {
+
+  const PasswordSetupPage({super.key});
   @override
-  _PasswordSetupPageState createState() => _PasswordSetupPageState();
+  State<PasswordSetupPage> createState() => _PasswordSetupPageState();
 }
 
 class _PasswordSetupPageState extends State<PasswordSetupPage> {
@@ -20,9 +25,24 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
     _passwordController.addListener(_checkPassword);
   }
 
-    void _checkPassword() {
+  void _checkPassword() {
     setState(() {
       _isButtonDisabled = _passwordController.text.isEmpty;
+    });
+  }
+
+  void _showSweetAlert(BuildContext context) {
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Success",
+      desc: "Kata sandi berhasil dibuat",
+      buttons: [],
+    ).show();
+
+    // Auto-close after 3 seconds
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context, rootNavigator: true).pop(); // Close the dialog
     });
   }
 
@@ -36,17 +56,21 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
         ),
         title: const Text("Daftar"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
+              Text(
                 'Buat Kata Sandi',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
               ),
               const SizedBox(
                 height: 30,
@@ -128,29 +152,42 @@ class _PasswordSetupPageState extends State<PasswordSetupPage> {
                     ),
                     minimumSize: const Size(380, 60)),
                 onPressed: _isButtonDisabled
-                  ? null
-                  : () {
-                    },
+                    ? null
+                    : () {
+                        _showSweetAlert(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NavigationPage()),
+                        );
+                      },
                 child: const Text(
                   'Selanjutnya',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
+                  style: TextStyle(fontSize: 18, fontFamily: 'DMSans'),
                 ),
               ),
               const SizedBox(height: 20.0),
-              const Text(
+              Text(
                 'Ketentuan Buat Kata Sandi',
-                style: TextStyle(fontSize: 16.0),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(fontSize: 14),
               ),
               const SizedBox(height: 10.0),
-              const Text(
-                '- Panjangnya minimal 12 karakter',
-                style: TextStyle(fontSize: 12.0),
+              Text(
+                '\u2022 Panjangnya minimal 12 karakter',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 14,
+                      color: const Color.fromARGB(255, 131, 131, 131),
+                    ),
               ),
-              const Text(
-                '- Menggunakan huruf besar dan kecil angka dan simbol khusus',
-                style: TextStyle(fontSize: 12.0),
+              Text(
+                '\u2022 Menggunakan huruf besar dan kecil angka dan simbol khusus',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 14,
+                      color: const Color.fromARGB(255, 131, 131, 131),
+                    ),
               ),
               const SizedBox(height: 20.0),
             ],

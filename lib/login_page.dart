@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:sali_hepeng/masuk_page.dart';
 import 'package:sali_hepeng/perjanjian_page.dart';
+import 'package:sali_hepeng/theme/theme.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -38,24 +40,25 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Daftar / Masuk"),
         centerTitle: true,
+        titleTextStyle: myTheme.appBarTheme.titleTextStyle,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text(
+            Text(
               'Silahkan Masuk / Daftar Dengan Nomor Handphone',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(
               height: 20,
             ),
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+                horizontal: 15,
               ),
               child: IntlPhoneField(
                 controller: _phoneNumberController,
@@ -65,6 +68,8 @@ class _LoginPageState extends State<LoginPage> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
+                  counterText: '',
+                  counterStyle: TextStyle(fontSize: 0),
                 ),
                 languageCode: "id",
                 onChanged: (phone) {
@@ -76,8 +81,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
             ),
+            Container(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Butuh Bantuan?',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: const Color.fromARGB(255, 124, 123, 123),
+                      ),
+                ),
+              ),
+            ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -94,17 +111,23 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _isButtonDisabled
                   ? null
                   : () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Perjanjian()),
-                      );
+                      print(_phoneNumberController);
+                      if (_phoneNumberController.text == '81210704479') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Perjanjian()),
+                        );
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginAccountPage()),
+                        );
+                      }
                     },
               child: const Text(
                 'Selanjutnya',
-                style: TextStyle(
-                  fontSize: 17,
-                ),
+                style: TextStyle(fontSize: 16, fontFamily: 'DMSans'),
               ),
             )
           ],

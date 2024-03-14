@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sali_hepeng/kebijakan_page.dart';
+import 'package:sali_hepeng/otp_page.dart';
 import 'package:sali_hepeng/theme/theme.dart';
 
-class Perjanjian extends StatefulWidget {
-  const Perjanjian({super.key});
+class Kebijakan extends StatefulWidget {
+  const Kebijakan({super.key});
 
   @override
-  State<Perjanjian> createState() => _PerjanjianState();
+  State<Kebijakan> createState() => _KebijakanState();
 }
 
-class _PerjanjianState extends State<Perjanjian> {
+class _KebijakanState extends State<Kebijakan> {
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
 
@@ -45,7 +45,7 @@ class _PerjanjianState extends State<Perjanjian> {
   void _scrollToBottom() {
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
     );
   }
@@ -66,9 +66,9 @@ class _PerjanjianState extends State<Perjanjian> {
         children: [
           Container(
             alignment: Alignment.topLeft,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Text(
-              'Perjanjian Pengguna',
+              'Kebijakan Privasi',
               style: Theme.of(context)
                   .textTheme
                   .bodySmall!
@@ -82,7 +82,7 @@ class _PerjanjianState extends State<Perjanjian> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Text(
                         style: Theme.of(context)
                             .textTheme
@@ -178,7 +178,7 @@ class _PerjanjianState extends State<Perjanjian> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Kebijakan()),
+                                  builder: (context) => const OtpPage()),
                             );
                           },
                           child: Text(
