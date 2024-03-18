@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:money_formatter/money_formatter.dart';
 import 'package:sali_hepeng/pin_page.dart';
 import 'package:sali_hepeng/theme/theme.dart';
@@ -133,18 +132,18 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: myTheme.sliderTheme.activeTickMarkColor,
                       inactiveTrackColor: myTheme.sliderTheme.inactiveTrackColor,
-                      trackShape: myTheme.sliderTheme.trackShape,
+                      trackShape: const RoundedRectSliderTrackShape(),
                       thumbColor: myTheme.sliderTheme.thumbColor,
                       thumbShape: myTheme.sliderTheme.thumbShape,
                       overlayColor: myTheme.sliderTheme.overlayColor,
                       overlayShape: myTheme.sliderTheme.overlayShape,
+                      showValueIndicator: ShowValueIndicator.never,
                     ),
                     child: Slider(
                       value: _moneySliderValue,
                       min: 600000,
                       max: 1000000,
                       divisions: 4,
-                      label: _moneySliderValue.round().toString(),
                       onChanged: (double value) {
                         setState(() {
                           _moneySliderValue = value;
@@ -234,18 +233,18 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: myTheme.sliderTheme.activeTickMarkColor,
                       inactiveTrackColor: myTheme.sliderTheme.inactiveTrackColor,
-                      trackShape: myTheme.sliderTheme.trackShape,
+                      trackShape: const RoundedRectSliderTrackShape(),
                       thumbColor: myTheme.sliderTheme.thumbColor,
                       thumbShape: myTheme.sliderTheme.thumbShape,
                       overlayColor: myTheme.sliderTheme.overlayColor,
                       overlayShape: myTheme.sliderTheme.overlayShape,
+                      showValueIndicator: ShowValueIndicator.never,
                     ),
                     child: Slider(
                       value: _daySliderValue,
                       min: 30,
                       max: 150,
                       divisions: 2,
-                      label: _daySliderValue.round().toString(),
                       onChanged: (double value) {
                         setState(() {
                           _daySliderValue = value;
