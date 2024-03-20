@@ -15,7 +15,6 @@ class NavigationPage extends StatefulWidget {
 
 class NavigationPageState extends State<NavigationPage> {
   int _currentIndex = 0;
-  final bool _hasNotifications = false;
 
   final index = [
     const PinjamDuitHomePage(),

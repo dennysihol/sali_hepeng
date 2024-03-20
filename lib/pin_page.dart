@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
-import 'package:sali_hepeng/password_page.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:sali_hepeng/theme/theme.dart';
-import 'package:sali_hepeng/verifikasi_page.dart';
+import 'package:sali_hepeng/pilih_pembayaran.dart';
 
 /// This is the basic usage of Pinput
 /// For more examples check out the demo directory
@@ -26,10 +24,10 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
     super.dispose();
   }
 
-  void goToPasswordPage() {
+  void goToPembayaranPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => PasswordSetupPage()),
+      MaterialPageRoute(builder: (context) => PilihPembayaran()),
     );
   }
 
@@ -37,8 +35,8 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
     Alert(
       context: context,
       type: AlertType.success,
-      title: "Success",
-      desc: "Kode Verifikasi Berhasil Dimasukan",
+      title: "",
+      desc: "Permintaan Sedang diproses",
       buttons: [],
     ).show();
 
@@ -51,18 +49,17 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
   @override
   Widget build(BuildContext context) {
     const focusedBorderColor = Color.fromRGBO(93, 93, 93, 1);
-    const fillColor = Color.fromRGBO(0, 0, 0, 0);
     const borderColor = Color.fromRGBO(133, 125, 125, 1);
 
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: 30,
+      height: 30,
       textStyle: const TextStyle(
-        fontSize: 22,
+        fontSize: 15,
         color: Color.fromRGBO(30, 60, 87, 1),
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(19),
+        borderRadius: BorderRadius.circular(50),
         border: Border.all(color: borderColor),
       ),
     );
@@ -98,6 +95,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                   // Specify direction if desired
                   textDirection: TextDirection.ltr,
                   child: Pinput(
+                    obscureText: true,
                     length: 6,
                     controller: pinController,
                     focusNode: focusNode,
@@ -107,7 +105,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                     defaultPinTheme: defaultPinTheme,
                     separatorBuilder: (index) => const SizedBox(width: 9),
                     validator: (value) {
-                      return value == '222222' ? null : 'Pin is incorrect';
+                      return value == '000000' ? null : 'Pin is incorrect';
                     },
                     // onClipboardFound: (value) {
                     //   debugPrint('onClipboardFound: $value');
@@ -115,9 +113,9 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                     // },
                     hapticFeedbackType: HapticFeedbackType.lightImpact,
                     onCompleted: (pin) {
-                      if (pin == '222222') {
+                      if (pin == '000000') {
                         _showSweetAlert(context);
-                        goToPasswordPage();
+                        goToPembayaranPage();
                       } else {
                         pinController.clear();
                         focusNode.requestFocus();
@@ -137,17 +135,20 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                         ),
                       ],
                     ),
-                    focusedPinTheme: defaultPinTheme.copyWith(
-                      decoration: defaultPinTheme.decoration!.copyWith(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: focusedBorderColor),
-                      ),
-                    ),
+                    // focusedPinTheme: defaultPinTheme.copyWith(
+                    //   decoration: defaultPinTheme.decoration!.copyWith(
+                    //     borderRadius: BorderRadius.circular(8),
+                    //     border: Border.all(color: focusedBorderColor),
+                    //   ),
+                    // ),
                     submittedPinTheme: defaultPinTheme.copyWith(
                       decoration: defaultPinTheme.decoration!.copyWith(
-                        color: fillColor,
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: focusedBorderColor),
+                        color: Color.fromARGB(255, 56, 55, 55),
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                            color: focusedBorderColor,
+                            style: BorderStyle.solid,
+                            strokeAlign: BorderSide.strokeAlignInside),
                       ),
                     ),
                     errorPinTheme: defaultPinTheme.copyBorderWith(
@@ -158,75 +159,6 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                 const SizedBox(
                   height: 60,
                 ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Tidak menerima kode OTP?',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(fontSize: 14),
-                      ),
-                    ),
-                    // TextButton(
-                    //   onPressed: () {
-                    //     focusNode.unfocus();
-                    //     formKey.currentState!.validate();
-                    //   },
-                    //   child: const Text(
-                    //     'Validate',
-                    //     style: TextStyle(color: Colors.black),
-                    //   ),
-                    // ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const VerifikasiPage()),
-                        );
-                      },
-                      child: Text(
-                        'Kirim ulang kode OTP',
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Kode OTP akan dikirimkan kembali secara otomatis\n'
-                        'jika waktu berakhir 01:59',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(fontSize: 14),
-                      ),
-                    ),
-                    // TextButton(
-                    //   onPressed: () {
-                    //     focusNode.unfocus();
-                    //     formKey.currentState!.validate();
-                    //   },
-                    //   child: const Text(
-                    //     'Validate',
-                    //     style: TextStyle(color: Colors.black),
-                    //   ),
-                    // ),
-                  ],
-                )
               ],
             ),
           ),
