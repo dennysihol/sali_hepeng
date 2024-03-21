@@ -86,7 +86,10 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
             padding: const EdgeInsets.only(left: 25, bottom: 15),
             child: Row(
               children: [
-                Image.asset('assets/images/icon/ic_money.png'),
+                Image.asset(
+                  'assets/images/icon/ic_money.png',
+                  height: 25,
+                ),
                 const SizedBox(
                   width: 10,
                 ),
@@ -124,14 +127,15 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                       ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: myTheme.sliderTheme.activeTickMarkColor,
-                      inactiveTrackColor: myTheme.sliderTheme.inactiveTrackColor,
+                      inactiveTrackColor:
+                          myTheme.sliderTheme.inactiveTrackColor,
                       trackShape: const RoundedRectSliderTrackShape(),
                       thumbColor: myTheme.sliderTheme.thumbColor,
                       thumbShape: myTheme.sliderTheme.thumbShape,
@@ -153,7 +157,7 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -181,13 +185,16 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
             ),
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           Container(
             padding: const EdgeInsets.only(left: 25, bottom: 15),
             child: Row(
               children: [
-                Image.asset('assets/images/icon/ic_calendar.png'),
+                Image.asset(
+                  'assets/images/icon/ic_calendar.png',
+                  height: 25,
+                ),
                 const SizedBox(
                   width: 10,
                 ),
@@ -214,7 +221,7 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Text(
                   '$dayValue Hari',
@@ -225,14 +232,15 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                       ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       activeTrackColor: myTheme.sliderTheme.activeTickMarkColor,
-                      inactiveTrackColor: myTheme.sliderTheme.inactiveTrackColor,
+                      inactiveTrackColor:
+                          myTheme.sliderTheme.inactiveTrackColor,
                       trackShape: const RoundedRectSliderTrackShape(),
                       thumbColor: myTheme.sliderTheme.thumbColor,
                       thumbShape: myTheme.sliderTheme.thumbShape,
@@ -254,7 +262,7 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -283,7 +291,6 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
           ),
           const Spacer(),
           Container(
-            height: 300,
             padding: const EdgeInsets.all(20),
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -296,7 +303,10 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
               children: [
                 Row(
                   children: [
-                    Image.asset('assets/images/icon/ic_simulasi.png'),
+                    Image.asset(
+                      'assets/images/icon/ic_simulasi.png',
+                      height: 35,
+                    ),
                     const SizedBox(
                       width: 10,
                     ),
@@ -409,10 +419,9 @@ class SubmitPinjamanState extends State<SubmitPinjaman> {
                       minimumSize: const Size(double.infinity, 60)),
                   onPressed: () {
                     Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PinEntryScreen()),
-                        );
+                      context,
+                      MaterialPageRoute(builder: (context) => PinEntryScreen()),
+                    );
                   },
                   child: const Text(
                     'Ajukan Pinjaman',

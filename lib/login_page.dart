@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                   ? null
                   : () {
                       print(_phoneNumberController);
-                      if (_phoneNumberController.text == '81210704479') {
+                      if (_phoneNumberController.text == '812') {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Perjanjian()),

@@ -25,6 +25,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
       appBar: AppBar(
         title: Image.asset(
           'assets/images/pd_logo.png',
+          height: 30,
           fit: BoxFit.cover,
         ),
         backgroundColor: const Color.fromARGB(255, 230, 243, 255),
@@ -63,9 +64,6 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
       ),
       body: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
           Container(
             width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 25),
@@ -119,7 +117,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 7,
+                    height: 5,
                   ),
                   Row(
                     children: [
@@ -170,7 +168,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 7,
+                    height: 5,
                   ),
                   Row(
                     children: [
@@ -247,7 +245,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 5,
                   ),
                   Row(
                     children: [
@@ -312,6 +310,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                       padding: const EdgeInsets.all(30),
                       child: Image.asset(
                         'assets/images/icon/red_info.png',
+                        height: 35,
                         scale: 0.8,
                       ),
                     ),
@@ -390,7 +389,6 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
           ),
           const Spacer(),
           Container(
-            height: 300,
             padding: const EdgeInsets.all(20),
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -415,7 +413,7 @@ class PinjamDuitHomePageState extends State<PinjamDuitHomePage> {
                   flex: 0,
                   child: CarouselSlider(
                     options: CarouselOptions(
-                      height: 150,
+                      height: 120,
                       autoPlay: true,
                       viewportFraction: 1,
                       autoPlayInterval: const Duration(seconds: 5),

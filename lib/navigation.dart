@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:sali_hepeng/pinjamduit_page.dart';
 import 'package:sali_hepeng/bayar_page.dart';
@@ -36,7 +35,6 @@ class NavigationPageState extends State<NavigationPage> {
       backgroundColor: const Color.fromARGB(255, 230, 243, 255),
       body: index[_currentIndex],
       bottomNavigationBar: SizedBox(
-        height: 95,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed, // Fixed for 5 items
           backgroundColor: Colors.white,
@@ -55,13 +53,17 @@ class NavigationPageState extends State<NavigationPage> {
             ),
             const BottomNavigationBarItem(
               icon: ImageIcon(
+                size: 22,
                 AssetImage(
                     'assets/images/icon/ic_bayar.png'), // Replace with your bayar icon image path
               ),
               label: 'Bayar',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset('assets/images/icon/ic_pd.png'),
+              icon: Image.asset(
+                'assets/images/icon/ic_pd.png',
+                height: 35,
+              ),
               label: 'PinjamDuit',
             ),
             const BottomNavigationBarItem(
@@ -76,7 +78,7 @@ class NavigationPageState extends State<NavigationPage> {
                 AssetImage(
                     'assets/images/icon/ic_profil.png'), // Replace with your profile icon image path
               ),
-              label: 'Profil',
+              label: 'Profile',
             ),
           ],
         ),

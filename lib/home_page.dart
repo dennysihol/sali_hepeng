@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       theme: myTheme,
       home: AnimatedSplashScreen(
         animationDuration: Duration(seconds: 1),
-        duration: 3000,
+        duration: 1000,
         splash: 'assets/images/background.png',
         splashIconSize: double.infinity,
         nextScreen: LoginPage(),
